@@ -10,6 +10,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('#messages-table').append '<div class="message">' +
         '<div class="message-user">' + data.username + ":" + '</div>' +
         '<div class="message-content">' + data.content + '</div>' + '</div>'
+      scroll_bottom()
 
 
 submit_message = () ->
@@ -19,5 +20,9 @@ submit_message = () ->
       event.target.value = "" # clear the message box after submitting
       event.preventDefault # prevent default behaviour of adding new line to text area
 
+scroll_bottom = () ->
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+
 $(document).on 'turbolinks:load', () ->
   submit_message()
+  scroll_bottom()
