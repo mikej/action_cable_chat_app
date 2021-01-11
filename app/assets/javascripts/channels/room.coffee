@@ -11,3 +11,11 @@ App.room = App.cable.subscriptions.create "RoomChannel",
         '<div class="message-user">' + data.username + ":" + '</div>' +
         '<div class="message-content">' + data.content + '</div>' + '</div>'
 
+
+submit_message = () ->
+  $('#message_content').on 'keydown', (event) ->
+    if event.keyCode is 13
+      console.log(event)
+
+$(document).on 'turbolinks:load', () ->
+  submit_message()
